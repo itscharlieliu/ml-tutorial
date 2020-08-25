@@ -1,3 +1,4 @@
+from matplotlib import pyplot
 from pandas import read_csv
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.linear_model import LogisticRegression
@@ -48,6 +49,10 @@ def main():
         results.append(cv_results)
         names.append(name)
         print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
+
+    pyplot.boxplot(results, labels=names)
+    pyplot.title("Algorithm Comparison")
+    pyplot.show()
 
 
 if __name__ == "__main__":
