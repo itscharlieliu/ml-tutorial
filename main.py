@@ -2,6 +2,7 @@ from matplotlib import pyplot
 from pandas import read_csv
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
@@ -53,6 +54,14 @@ def main():
     pyplot.boxplot(results, labels=names)
     pyplot.title("Algorithm Comparison")
     pyplot.show()
+
+    model = SVC(gamma='auto')
+    model.fit(x_train, y_train)
+    predictions = model.predict(x_validation)
+    # Evaluate predictions
+    print(accuracy_score(y_validation, predictions))
+    print(confusion_matrix(y_validation, predictions))
+    print(classification_report(y_validation, predictions))
 
 
 if __name__ == "__main__":
